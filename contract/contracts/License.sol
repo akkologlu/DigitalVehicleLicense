@@ -41,7 +41,7 @@ contract License {
 
     address public authorizedDealer;
 
-    function DigitalVehicleLicense() public {
+    function License() public {
         authorizedDealer = msg.sender;
     }
 
