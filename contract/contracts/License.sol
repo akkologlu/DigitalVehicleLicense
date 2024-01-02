@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.4.17;
+pragma solidity ^0.8.9;
 
 contract License {
     struct User {
@@ -24,60 +24,122 @@ contract License {
     }
 
     struct Accident {
+        uint id;
         uint date;
         string description;
     }
 
     struct Maintenance {
+        uint id;
         uint date;
-        string details;
+        string report;
     }
 
     mapping(address => User) public users;
     mapping(uint => Vehicle) public vehicles;
     mapping(uint => OwnershipHistory[]) public ownershipHistories;
-    mapping(uint => Accident[]) public accidentHistories;
-    mapping(uint => Maintenance[]) public maintenanceHistories;
+    mapping(uint => mapping(uint => Accident)) public accidentHistories;
+    mapping(uint => mapping(uint => Maintenance)) public maintenanceHistories;
+    mapping(uint => uint) public accidentCounts;
+    mapping(uint => uint) public maintenanceCounts;
 
     address public authorizedDealer;
 
-    function License() public {
+    constructor() {
         authorizedDealer = msg.sender;
     }
 
     modifier onlyAuthorizedDealer() {
-        require(msg.sender == authorizedDealer);
+        require(msg.sender == authorizedDealer, "Only authorized dealer can perform this action");
         _;
     }
 
-    function registerUser(string _name, string _profession) public {
+    function registerUser(string memory _name, string memory _profession) public {
         User memory newUser = User({name: _name, profession: _profession});
         users[msg.sender] = newUser;
     }
 
-    function addVehicle(uint _vehicleId, string _brand, string _model, uint _year, uint _kilometers) public onlyAuthorizedDealer {
+    function addVehicle(uint _vehicleId, string memory _brand, string memory _model, uint _year, uint _kilometers) public onlyAuthorizedDealer {
         Vehicle memory newVehicle = Vehicle({brand: _brand, model: _model, year: _year, kilometers: _kilometers, currentOwner: msg.sender});
         vehicles[_vehicleId] = newVehicle;
     }
 
     function transferVehicle(uint _vehicleId, address _newOwner, uint _endKilometers, uint _transferYear) public {
-        require(vehicles[_vehicleId].currentOwner == msg.sender);
+        require(vehicles[_vehicleId].currentOwner == msg.sender, "Only the current owner can transfer the vehicle");
 
-        OwnershipHistory memory newHistory = OwnershipHistory({owner: msg.sender, startYear: now, endYear: _transferYear, startKilometers: vehicles[_vehicleId].kilometers, endKilometers: _endKilometers});
+        OwnershipHistory memory newHistory = OwnershipHistory({
+            owner: msg.sender,
+            startYear: block.timestamp,
+            endYear: _transferYear,
+            startKilometers: vehicles[_vehicleId].kilometers,
+            endKilometers: _endKilometers
+        });
         ownershipHistories[_vehicleId].push(newHistory);
 
         vehicles[_vehicleId].currentOwner = _newOwner;
         vehicles[_vehicleId].kilometers = _endKilometers;
     }
 
-    function addAccident(uint _vehicleId, uint _date, string _description) public onlyAuthorizedDealer {
-        Accident memory newAccident = Accident({date: _date, description: _description});
-        accidentHistories[_vehicleId].push(newAccident);
+    function addAccident(uint _vehicleId, uint _date, string memory _description) public onlyAuthorizedDealer {
+        uint accidentId = accidentCounts[_vehicleId]++;
+        Accident memory newAccident = Accident({id: accidentId, date: _date, description: _description});
+        accidentHistories[_vehicleId][accidentId] = newAccident;
     }
 
-    function addMaintenance(uint _vehicleId, uint _date, string _details) public onlyAuthorizedDealer {
-        Maintenance memory newMaintenance = Maintenance({date: _date, details: _details});
-        maintenanceHistories[_vehicleId].push(newMaintenance);
+    function getAccident(uint _vehicleId, uint _accidentId) public view returns (Accident memory) {
+        require(_accidentId < accidentCounts[_vehicleId], "Accident does not exist");
+        return accidentHistories[_vehicleId][_accidentId];
+    }
+
+    function getAccidentHistory(uint _vehicleId) public view returns (Accident[] memory) {
+        uint accidentCount = accidentCounts[_vehicleId];
+        Accident[] memory accidents = new Accident[](accidentCount);
+
+        for (uint i = 0; i < accidentCount; i++) {
+            accidents[i] = accidentHistories[_vehicleId][i];
+        }
+
+        return accidents;
+    }
+
+    function addMaintenance(uint _vehicleId, uint _date, string memory _report) public onlyAuthorizedDealer {
+        uint maintenanceId = maintenanceCounts[_vehicleId]++;
+        Maintenance memory newMaintenance = Maintenance({id: maintenanceId, date: _date, report: _report});
+        maintenanceHistories[_vehicleId][maintenanceId] = newMaintenance;
+    }
+
+    function getMaintenance(uint _vehicleId, uint _maintenanceId) public view returns (Maintenance memory) {
+        require(_maintenanceId < maintenanceCounts[_vehicleId], "Maintenance does not exist");
+        return maintenanceHistories[_vehicleId][_maintenanceId];
+    }
+
+    function getMaintenanceHistory(uint _vehicleId) public view returns (Maintenance[] memory) {
+        uint maintenanceCount = maintenanceCounts[_vehicleId];
+        Maintenance[] memory maintenances = new Maintenance[](maintenanceCount);
+
+        for (uint i = 0; i < maintenanceCount; i++) {
+            maintenances[i] = maintenanceHistories[_vehicleId][i];
+        }
+        return maintenances;
+    }
+
+    function getCompleteVehicleDetails(uint _vehicleId) public view returns (
+        Vehicle memory vehicleDetails,
+        OwnershipHistory[] memory vehicleOwnershipHistory,
+        Accident[] memory vehicleAccidentHistory,
+        Maintenance[] memory vehicleMaintenanceHistory
+    ) {
+        // Fetching vehicle details
+        vehicleDetails = vehicles[_vehicleId];
+
+        // Fetching ownership history
+        vehicleOwnershipHistory = ownershipHistories[_vehicleId];
+
+        // Fetching accident history using existing function
+        vehicleAccidentHistory = getAccidentHistory(_vehicleId);
+
+        // Fetching maintenance history using existing function
+        vehicleMaintenanceHistory = getMaintenanceHistory(_vehicleId);
     }
 
 }
