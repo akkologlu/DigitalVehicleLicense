@@ -5,7 +5,6 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import RegisterUser from "./components/RegisterUser";
 import Navbar from "./components/Navbar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AddVehicle from "./components/AddVehicle";
 import AddAccident from "./components/AddAccident";
 import AddMaintenance from "./components/AddMaintenance";
@@ -27,7 +26,7 @@ function App() {
       <div className="bg-[#1e1e20] lg:w-72 w-48 h-[%95] sticky m-1 rounded-xl">
         <Navbar />
       </div>
-      <div className="bg-blue-500 w-full">
+      <div className=" w-full">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/registerUser" element={<RegisterUser />} />

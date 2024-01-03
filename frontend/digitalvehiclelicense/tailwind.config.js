@@ -4,6 +4,8 @@ module.exports = {
   theme: {
     fontFamily: {
       roboto: ["Roboto", "sans-serif"],
+      poppins: ["Poppins", "sans-serif"],
+      rubik: ["Rubik", "sans-serif"],
     },
   },
   plugins: [],

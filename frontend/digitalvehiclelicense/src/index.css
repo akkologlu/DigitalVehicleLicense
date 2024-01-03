@@ -14,3 +14,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.formInput {
+  @apply border border-gray-300 rounded-md py-1 px-2 outline-none;
+}
+
+.formButton {
+  @apply bg-green-400 flex justify-center items-center text-2xl h-full w-full py-1 px-2 rounded-lg text-white font-rubik hover:bg-green-600 ease-in-out transition-all duration-300;
+}
+
+.formLabel {
+  @apply text-sm  text-green-700;
+}
+
+.formDiv {
+  @apply font-roboto h-screen w-full flex justify-center items-center;
+}
+
+.form {
+  @apply flex flex-col space-y-5 p-10 shadow-2xl rounded-2xl;
+}
+
+.formHeader {
+  @apply text-center text-2xl font-rubik text-green-600;
+}
+
+.formRow {
+  @apply flex space-x-10;
+}
+
+.inputDiv {
+  @apply flex flex-col space-y-1;
+}
