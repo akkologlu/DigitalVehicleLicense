@@ -23,7 +23,7 @@ function App() {
   console.log(manager);
   return (
     <div className="App flex min-h-screen">
-      <div className="bg-[#1e1e20] lg:w-72 w-48 h-[%95] sticky m-1 rounded-xl">
+      <div className="bg-[#ffffff] lg:w-72 w-48 h-[%95]  m-3 ">
         <Navbar />
       </div>
       <div className=" w-full">

@@ -1,4 +1,23 @@
 #navbar a.active {
-  background-color: #1f3027;
-  color: #67ffae;
+  background-color: #22c55e;
+  color: #ffffff;
+}
+
+#navbar a.active > .icon {
+  color: #ffffff;
+}
+
+.navLink:hover {
+  background-color: #22c55e;
+  color: #ffffff;
+  ease: all 0.2s;
+  -webkit-transition: all 0.2s;
+}
+
+.navLink:hover .faIcon {
+  color: #ffffff;
+}
+
+.navLink.active .faIcon {
+  color: #ffffff;
 }

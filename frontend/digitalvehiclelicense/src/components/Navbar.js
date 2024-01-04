@@ -15,71 +15,70 @@ import "../style/navbar.css";
 
 function Navbar() {
   return (
-    <div className="font-roboto text-[#c0c0c0] flex flex-col h-full justify-between">
-      <div className="bg-[#28282c] p-2 py-6 text-[#d6d6d6] rounded-t-xl flex items-center space-x-3">
+    <div className="font-roboto text-gray-700 flex flex-col h-full justify-between shadow-lg rounded-3xl">
+      <div className="bg-[#ffffff] p-2 py-6 text-gray-800 rounded-t-xl flex items-center space-x-3">
         <img src={logo} alt="" className="h-10 " />
         <p>Digital Vehicle License</p>
       </div>
+      <hr />
       <div>
         <nav className="mainNav flex flex-col" id="navbar">
           <div>
-            <NavLink
-              to="/"
-              className="space-x-6 flex p-3 items-center  m-4 rounded-xl hover:bg-[#1f3027] hover:text-[#67ffae]"
-            >
-              <FontAwesomeIcon icon={faHouse} className="text-3xl" />
+            <NavLink to="/" className="navLink navLinkDiv">
+              <FontAwesomeIcon icon={faHouse} className="faIcon navLinkIcon" />
               <p>Home</p>
             </NavLink>
           </div>
           <div>
-            <NavLink
-              to="/registerUser"
-              className="space-x-6 flex p-3 items-center  m-4 rounded-xl hover:bg-[#1f3027] hover:text-[#67ffae]"
-            >
-              <FontAwesomeIcon icon={faUserPlus} className="text-3xl" />
+            <NavLink to="/registerUser" className="navLink navLinkDiv">
+              <FontAwesomeIcon
+                icon={faUserPlus}
+                className="faIcon navLinkIcon "
+              />
               <p>Register User</p>
             </NavLink>
           </div>
           <div>
-            <NavLink
-              to="/addVehicle"
-              className="space-x-6 flex p-3 items-center  m-4 rounded-xl hover:bg-[#1f3027] hover:text-[#67ffae]"
-            >
-              <FontAwesomeIcon icon={faCarSide} className="text-3xl" />
+            <NavLink to="/addVehicle" className="navLink navLinkDiv">
+              <FontAwesomeIcon
+                icon={faCarSide}
+                className="faIcon navLinkIcon"
+              />
               <p>Add Vehicle</p>
             </NavLink>
           </div>
           <div>
-            <NavLink
-              to="/addAccident"
-              className="space-x-6 flex p-3 items-center  m-4 rounded-xl hover:bg-[#1f3027] hover:text-[#67ffae]"
-            >
-              <FontAwesomeIcon icon={faCarBurst} className="text-3xl" />
+            <NavLink to="/addAccident" className="navLink navLinkDiv">
+              <FontAwesomeIcon
+                icon={faCarBurst}
+                className="faIcon navLinkIcon"
+              />
               <p>Add Accident</p>
             </NavLink>
           </div>
           <div>
-            <NavLink
-              to="/addMaintenance"
-              className="space-x-6 flex p-3 items-center  m-4 rounded-xl hover:bg-[#1f3027] hover:text-[#67ffae]"
-            >
-              <FontAwesomeIcon icon={faTruckPickup} className="text-3xl" />
+            <NavLink to="/addMaintenance" className="navLink navLinkDiv">
+              <FontAwesomeIcon
+                icon={faTruckPickup}
+                className="faIcon navLinkIcon"
+              />
               <p>Add Maintenance</p>
             </NavLink>
           </div>
           <div>
-            <NavLink
-              to="/transferVehicle"
-              className="space-x-6 flex p-3 items-center  m-4 rounded-xl hover:bg-[#1f3027] hover:text-[#67ffae]"
-            >
-              <FontAwesomeIcon icon={faRightLeft} className="text-3xl" />
+            <NavLink to="/transferVehicle" className="navLink navLinkDiv">
+              <FontAwesomeIcon
+                icon={faRightLeft}
+                className="faIcon navLinkIcon "
+              />
               <p>Transfer Vehicle</p>
             </NavLink>
           </div>
         </nav>
       </div>
+      <hr />
       <div>
-        <div className="bg-[#28282c] p-4 py-6 text-[#d6d6d6] flex items-center space-x-3 rounded-b-xl">
+        <div className="bg-[#ffffff] p-4 py-6 text-[#d6d6d6] flex items-center space-x-3 rounded-b-xl">
           <div>
             <img
               src={profil}
@@ -88,8 +87,8 @@ function Navbar() {
             />
           </div>
           <div>
-            <p className="text-white">Abdullah Akkoloğlu</p>
-            <p className="text-sm">Software Developer</p>
+            <p className="text-gray-800">Abdullah Akkoloğlu</p>
+            <p className="text-sm text-gray-400">Software Developer</p>
           </div>
         </div>
       </div>

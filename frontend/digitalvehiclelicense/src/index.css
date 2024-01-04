@@ -46,3 +46,11 @@ code {
 .inputDiv {
   @apply flex flex-col space-y-1;
 }
+
+.navLinkDiv {
+  @apply space-x-6 flex p-3 items-center  m-4 rounded-xl hover:bg-[#22c55e] hover:text-[#ffffff];
+}
+
+.navLinkIcon {
+  @apply text-3xl text-green-500;
+}
