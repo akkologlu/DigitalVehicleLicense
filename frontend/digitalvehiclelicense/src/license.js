@@ -1,6 +1,6 @@
 import web3 from "./web3";
 
-const address = "0xe4Cf967A34E29be062CEE080A7C7c2e1cd72218A";
+const address = "0x517D8C7a9f5C94c2b8aB32AA4845C81e3755607b";
 
 const abi = [
   { inputs: [], stateMutability: "nonpayable", type: "constructor" },
@@ -154,6 +154,106 @@ const abi = [
         name: "vehicleMaintenanceHistory",
         type: "tuple[]",
       },
+      {
+        components: [
+          {
+            components: [
+              {
+                internalType: "enum License.PartStatusType",
+                name: "frontBumper",
+                type: "uint8",
+              },
+              {
+                internalType: "enum License.PartStatusType",
+                name: "rearBumper",
+                type: "uint8",
+              },
+            ],
+            internalType: "struct License.BumperStatus",
+            name: "bumpers",
+            type: "tuple",
+          },
+          {
+            components: [
+              {
+                internalType: "enum License.PartStatusType",
+                name: "frontHood",
+                type: "uint8",
+              },
+              {
+                internalType: "enum License.PartStatusType",
+                name: "rearHood",
+                type: "uint8",
+              },
+            ],
+            internalType: "struct License.HoodStatus",
+            name: "hoods",
+            type: "tuple",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "roof",
+            type: "uint8",
+          },
+          {
+            components: [
+              {
+                internalType: "enum License.PartStatusType",
+                name: "rightFrontFender",
+                type: "uint8",
+              },
+              {
+                internalType: "enum License.PartStatusType",
+                name: "leftFrontFender",
+                type: "uint8",
+              },
+              {
+                internalType: "enum License.PartStatusType",
+                name: "rightRearFender",
+                type: "uint8",
+              },
+              {
+                internalType: "enum License.PartStatusType",
+                name: "leftRearFender",
+                type: "uint8",
+              },
+            ],
+            internalType: "struct License.FenderStatus",
+            name: "fenders",
+            type: "tuple",
+          },
+          {
+            components: [
+              {
+                internalType: "enum License.PartStatusType",
+                name: "rightFrontDoor",
+                type: "uint8",
+              },
+              {
+                internalType: "enum License.PartStatusType",
+                name: "leftFrontDoor",
+                type: "uint8",
+              },
+              {
+                internalType: "enum License.PartStatusType",
+                name: "rightRearDoor",
+                type: "uint8",
+              },
+              {
+                internalType: "enum License.PartStatusType",
+                name: "leftRearDoor",
+                type: "uint8",
+              },
+            ],
+            internalType: "struct License.DoorStatus",
+            name: "doors",
+            type: "tuple",
+          },
+        ],
+        internalType: "struct License.PartStatus",
+        name: "vehiclePartStatus",
+        type: "tuple",
+      },
     ],
     stateMutability: "view",
     type: "function",
@@ -198,6 +298,114 @@ const abi = [
     type: "function",
   },
   {
+    inputs: [{ internalType: "uint256", name: "_vehicleId", type: "uint256" }],
+    name: "getPartStatus",
+    outputs: [
+      {
+        components: [
+          {
+            components: [
+              {
+                internalType: "enum License.PartStatusType",
+                name: "frontBumper",
+                type: "uint8",
+              },
+              {
+                internalType: "enum License.PartStatusType",
+                name: "rearBumper",
+                type: "uint8",
+              },
+            ],
+            internalType: "struct License.BumperStatus",
+            name: "bumpers",
+            type: "tuple",
+          },
+          {
+            components: [
+              {
+                internalType: "enum License.PartStatusType",
+                name: "frontHood",
+                type: "uint8",
+              },
+              {
+                internalType: "enum License.PartStatusType",
+                name: "rearHood",
+                type: "uint8",
+              },
+            ],
+            internalType: "struct License.HoodStatus",
+            name: "hoods",
+            type: "tuple",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "roof",
+            type: "uint8",
+          },
+          {
+            components: [
+              {
+                internalType: "enum License.PartStatusType",
+                name: "rightFrontFender",
+                type: "uint8",
+              },
+              {
+                internalType: "enum License.PartStatusType",
+                name: "leftFrontFender",
+                type: "uint8",
+              },
+              {
+                internalType: "enum License.PartStatusType",
+                name: "rightRearFender",
+                type: "uint8",
+              },
+              {
+                internalType: "enum License.PartStatusType",
+                name: "leftRearFender",
+                type: "uint8",
+              },
+            ],
+            internalType: "struct License.FenderStatus",
+            name: "fenders",
+            type: "tuple",
+          },
+          {
+            components: [
+              {
+                internalType: "enum License.PartStatusType",
+                name: "rightFrontDoor",
+                type: "uint8",
+              },
+              {
+                internalType: "enum License.PartStatusType",
+                name: "leftFrontDoor",
+                type: "uint8",
+              },
+              {
+                internalType: "enum License.PartStatusType",
+                name: "rightRearDoor",
+                type: "uint8",
+              },
+              {
+                internalType: "enum License.PartStatusType",
+                name: "leftRearDoor",
+                type: "uint8",
+              },
+            ],
+            internalType: "struct License.DoorStatus",
+            name: "doors",
+            type: "tuple",
+          },
+        ],
+        internalType: "struct License.PartStatus",
+        name: "",
+        type: "tuple",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     name: "maintenanceCounts",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
@@ -235,6 +443,107 @@ const abi = [
     type: "function",
   },
   {
+    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    name: "partStatuses",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "enum License.PartStatusType",
+            name: "frontBumper",
+            type: "uint8",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "rearBumper",
+            type: "uint8",
+          },
+        ],
+        internalType: "struct License.BumperStatus",
+        name: "bumpers",
+        type: "tuple",
+      },
+      {
+        components: [
+          {
+            internalType: "enum License.PartStatusType",
+            name: "frontHood",
+            type: "uint8",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "rearHood",
+            type: "uint8",
+          },
+        ],
+        internalType: "struct License.HoodStatus",
+        name: "hoods",
+        type: "tuple",
+      },
+      {
+        internalType: "enum License.PartStatusType",
+        name: "roof",
+        type: "uint8",
+      },
+      {
+        components: [
+          {
+            internalType: "enum License.PartStatusType",
+            name: "rightFrontFender",
+            type: "uint8",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "leftFrontFender",
+            type: "uint8",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "rightRearFender",
+            type: "uint8",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "leftRearFender",
+            type: "uint8",
+          },
+        ],
+        internalType: "struct License.FenderStatus",
+        name: "fenders",
+        type: "tuple",
+      },
+      {
+        components: [
+          {
+            internalType: "enum License.PartStatusType",
+            name: "rightFrontDoor",
+            type: "uint8",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "leftFrontDoor",
+            type: "uint8",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "rightRearDoor",
+            type: "uint8",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "leftRearDoor",
+            type: "uint8",
+          },
+        ],
+        internalType: "struct License.DoorStatus",
+        name: "doors",
+        type: "tuple",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       { internalType: "string", name: "_name", type: "string" },
       { internalType: "string", name: "_profession", type: "string" },
@@ -252,6 +561,108 @@ const abi = [
       { internalType: "uint256", name: "_transferYear", type: "uint256" },
     ],
     name: "transferVehicle",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "_vehicleId", type: "uint256" },
+      {
+        components: [
+          {
+            internalType: "enum License.PartStatusType",
+            name: "frontBumper",
+            type: "uint8",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "rearBumper",
+            type: "uint8",
+          },
+        ],
+        internalType: "struct License.BumperStatus",
+        name: "_bumpers",
+        type: "tuple",
+      },
+      {
+        components: [
+          {
+            internalType: "enum License.PartStatusType",
+            name: "frontHood",
+            type: "uint8",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "rearHood",
+            type: "uint8",
+          },
+        ],
+        internalType: "struct License.HoodStatus",
+        name: "_hoods",
+        type: "tuple",
+      },
+      {
+        internalType: "enum License.PartStatusType",
+        name: "_roof",
+        type: "uint8",
+      },
+      {
+        components: [
+          {
+            internalType: "enum License.PartStatusType",
+            name: "rightFrontFender",
+            type: "uint8",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "leftFrontFender",
+            type: "uint8",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "rightRearFender",
+            type: "uint8",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "leftRearFender",
+            type: "uint8",
+          },
+        ],
+        internalType: "struct License.FenderStatus",
+        name: "_fenders",
+        type: "tuple",
+      },
+      {
+        components: [
+          {
+            internalType: "enum License.PartStatusType",
+            name: "rightFrontDoor",
+            type: "uint8",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "leftFrontDoor",
+            type: "uint8",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "rightRearDoor",
+            type: "uint8",
+          },
+          {
+            internalType: "enum License.PartStatusType",
+            name: "leftRearDoor",
+            type: "uint8",
+          },
+        ],
+        internalType: "struct License.DoorStatus",
+        name: "_doors",
+        type: "tuple",
+      },
+    ],
+    name: "updatePartStatus",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

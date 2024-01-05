@@ -35,7 +35,7 @@ function Navbar() {
                 icon={faUserPlus}
                 className="faIcon navLinkIcon "
               />
-              <p>Register User</p>
+              <p>User</p>
             </NavLink>
           </div>
           <div>
@@ -44,7 +44,7 @@ function Navbar() {
                 icon={faCarSide}
                 className="faIcon navLinkIcon"
               />
-              <p>Add Vehicle</p>
+              <p>Vehicle</p>
             </NavLink>
           </div>
           <div>
@@ -53,7 +53,7 @@ function Navbar() {
                 icon={faCarBurst}
                 className="faIcon navLinkIcon"
               />
-              <p>Add Accident</p>
+              <p>Accident</p>
             </NavLink>
           </div>
           <div>
@@ -62,16 +62,16 @@ function Navbar() {
                 icon={faTruckPickup}
                 className="faIcon navLinkIcon"
               />
-              <p>Add Maintenance</p>
+              <p>Maintenance</p>
             </NavLink>
           </div>
           <div>
-            <NavLink to="/transferVehicle" className="navLink navLinkDiv">
+            <NavLink to="/partStatus" className="navLink navLinkDiv">
               <FontAwesomeIcon
                 icon={faRightLeft}
                 className="faIcon navLinkIcon "
               />
-              <p>Transfer Vehicle</p>
+              <p>Part Status</p>
             </NavLink>
           </div>
         </nav>

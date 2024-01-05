@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar";
 import AddVehicle from "./components/AddVehicle";
 import AddAccident from "./components/AddAccident";
 import AddMaintenance from "./components/AddMaintenance";
-import TransferVehicle from "./components/TransferVehicle";
+import PartStatus from "./components/PartStatus";
 
 function App() {
   const [manager, setManager] = useState("");
@@ -23,7 +23,7 @@ function App() {
   console.log(manager);
   return (
     <div className="App flex min-h-screen">
-      <div className="bg-[#ffffff] lg:w-72 w-48 h-[%95]  m-3 ">
+      <div className="bg-[#ffffff] lg:w-72 sticky top-3 w-48 h-[95vh] m-3 ">
         <Navbar />
       </div>
       <div className=" w-full">
@@ -33,7 +33,7 @@ function App() {
           <Route path="/addVehicle" element={<AddVehicle />} />
           <Route path="/addAccident" element={<AddAccident />} />
           <Route path="/addMaintenance" element={<AddMaintenance />} />
-          <Route path="/transferVehicle" element={<TransferVehicle />} />
+          <Route path="/partStatus" element={<PartStatus />} />
         </Routes>
       </div>
     </div>

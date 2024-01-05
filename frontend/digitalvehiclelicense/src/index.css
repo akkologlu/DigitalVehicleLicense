@@ -54,3 +54,11 @@ code {
 .navLinkIcon {
   @apply text-3xl text-green-500;
 }
+
+.select {
+  @apply text-sm rounded-lg block w-full p-1.5 bg-[#fafafa] text-gray-800 outline-none;
+}
+
+.selectButton {
+  @apply bg-green-400 flex justify-center items-center text-2xl w-48 h-8 py-1 px-2 rounded-lg text-white font-rubik hover:bg-green-600 ease-in-out transition-all duration-300;
+}

@@ -127,8 +127,16 @@ function AddVehicle() {
                       </>
                     ) : (
                       <>
-                        <FaCheckCircle className="text-lg mr-2" />
-                        <p className="text-sm">Transaction successful</p>
+                        {message === "error" ? (
+                          <>
+                            <p className="text-sm">Error occured</p>
+                          </>
+                        ) : (
+                          <>
+                            <FaCheckCircle className="text-lg mr-2" />
+                            <p className="text-sm">Transaction successful</p>
+                          </>
+                        )}
                       </>
                     )}
                   </>
