@@ -33,8 +33,41 @@ function Home() {
 
         {vehicleDetails && (
           <div>
-            <h3>Vehicle Details:</h3>
-            {/* Display the vehicle details here */}
+            <div className="flex flex-col w-fit items-end">
+              <div className="font-bebas">
+                <p className=" text-sky-950 text-9xl font-extrabold">
+                  {" "}
+                  {vehicleDetails.vehicleDetails[0]}{" "}
+                  <span className="text-sky-800 text-7xl font-semibold">
+                    {vehicleDetails.vehicleDetails[1]}
+                  </span>
+                </p>
+              </div>
+              <div className="font-bebas flex space-x-6">
+                <div>
+                  <p className="text-[#0c4a6eb0] text-5xl font-semibold">
+                    {parseInt(vehicleDetails.vehicleDetails[2])}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[#0c4a6eb0] text-5xl font-semibold">
+                    {parseInt(vehicleDetails.vehicleDetails[3])} KM
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <p>KAZALAR</p>
+              <p>{parseInt(vehicleDetails.vehicleAccidentHistory[7][1])}</p>
+              <p>
+                <a
+                  href={vehicleDetails.vehicleAccidentHistory[7][2]}
+                  target="_blank" rel="noreferrer"
+                >
+                  Report
+                </a>
+              </p>
+            </div>
           </div>
         )}
       </div>

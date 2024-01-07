@@ -20,11 +20,11 @@ code {
 }
 
 .formButton {
-  @apply bg-green-400 flex justify-center items-center text-2xl h-full w-full py-1 px-2 rounded-lg text-white font-rubik hover:bg-green-600 ease-in-out transition-all duration-300;
+  @apply bg-sky-800 flex justify-center items-center text-2xl h-full w-full py-1 px-2 rounded-lg text-white font-rubik hover:bg-sky-800 ease-in-out transition-all duration-300;
 }
 
 .formLabel {
-  @apply text-sm  text-green-700;
+  @apply text-sm  text-sky-900;
 }
 
 .formDiv {
@@ -36,7 +36,7 @@ code {
 }
 
 .formHeader {
-  @apply text-center text-2xl font-rubik text-green-600;
+  @apply text-center text-2xl font-rubik text-sky-800;
 }
 
 .formRow {
@@ -48,11 +48,11 @@ code {
 }
 
 .navLinkDiv {
-  @apply space-x-6 flex p-3 items-center  m-4 rounded-xl hover:bg-[#22c55e] hover:text-[#ffffff];
+  @apply space-x-6 flex p-3 items-center  m-4 rounded-xl hover:text-[#ffffff];
 }
 
 .navLinkIcon {
-  @apply text-3xl text-green-500;
+  @apply text-3xl text-sky-800;
 }
 
 .select {
@@ -60,5 +60,9 @@ code {
 }
 
 .selectButton {
-  @apply bg-green-400 flex justify-center items-center text-2xl w-48 h-8 py-1 px-2 rounded-lg text-white font-rubik hover:bg-green-600 ease-in-out transition-all duration-300;
+  @apply bg-sky-800 flex justify-center items-center text-2xl w-48 h-8 py-1 px-2 rounded-lg text-white font-rubik hover:bg-sky-800 ease-in-out transition-all duration-300;
+}
+
+.navp {
+  @apply lg:block hidden;
 }

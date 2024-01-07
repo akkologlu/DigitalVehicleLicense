@@ -20,10 +20,9 @@ function App() {
 
     fetchData();
   }, []);
-  console.log(manager);
   return (
     <div className="App flex min-h-screen">
-      <div className="bg-[#ffffff] lg:w-72 sticky top-3 w-48 h-[95vh] m-3 ">
+      <div className="bg-[#ffffff] lg:w-72 sticky top-3 h-[95vh] m-3 ">
         <Navbar />
       </div>
       <div className=" w-full">

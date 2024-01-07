@@ -16,9 +16,8 @@ import "../style/navbar.css";
 function Navbar() {
   return (
     <div className="font-roboto text-gray-700 flex flex-col h-full justify-between shadow-lg rounded-3xl">
-      <div className="bg-[#ffffff] p-2 py-6 text-gray-800 rounded-t-xl flex items-center space-x-3">
-        <img src={logo} alt="" className="h-10 " />
-        <p>Digital Vehicle License</p>
+      <div className="bg-[#ffffff] p-2 py-6 text-gray-800 rounded-t-xl justify-center  flex items-center space-x-3 ">
+        <img src={logo} alt="" className=" h-16 md:h-20 lg:h-24 rounded-full" />
       </div>
       <hr />
       <div>
@@ -26,7 +25,7 @@ function Navbar() {
           <div>
             <NavLink to="/" className="navLink navLinkDiv">
               <FontAwesomeIcon icon={faHouse} className="faIcon navLinkIcon" />
-              <p>Home</p>
+              <p className="navp">Home</p>
             </NavLink>
           </div>
           <div>
@@ -35,7 +34,7 @@ function Navbar() {
                 icon={faUserPlus}
                 className="faIcon navLinkIcon "
               />
-              <p>User</p>
+              <p className="navp">User</p>
             </NavLink>
           </div>
           <div>
@@ -44,7 +43,7 @@ function Navbar() {
                 icon={faCarSide}
                 className="faIcon navLinkIcon"
               />
-              <p>Vehicle</p>
+              <p className="navp">Vehicle</p>
             </NavLink>
           </div>
           <div>
@@ -53,7 +52,7 @@ function Navbar() {
                 icon={faCarBurst}
                 className="faIcon navLinkIcon"
               />
-              <p>Accident</p>
+              <p className="navp">Accident</p>
             </NavLink>
           </div>
           <div>
@@ -62,7 +61,7 @@ function Navbar() {
                 icon={faTruckPickup}
                 className="faIcon navLinkIcon"
               />
-              <p>Maintenance</p>
+              <p className="navp">Maintenance</p>
             </NavLink>
           </div>
           <div>
@@ -71,14 +70,14 @@ function Navbar() {
                 icon={faRightLeft}
                 className="faIcon navLinkIcon "
               />
-              <p>Part Status</p>
+              <p className="navp">Part Status</p>
             </NavLink>
           </div>
         </nav>
       </div>
       <hr />
       <div>
-        <div className="bg-[#ffffff] p-4 py-6 text-[#d6d6d6] flex items-center space-x-3 rounded-b-xl">
+        <div className="bg-[#ffffff] p-4 py-6 text-[#d6d6d6] flex items-center space-x-3 rounded-b-xl justify-center lg:justify-start">
           <div>
             <img
               src={profil}
@@ -86,7 +85,7 @@ function Navbar() {
               className="h-10 w-10 rounded-full object-cover"
             />
           </div>
-          <div>
+          <div className="navp">
             <p className="text-gray-800">Abdullah Akkoloğlu</p>
             <p className="text-sm text-gray-400">Software Developer</p>
           </div>

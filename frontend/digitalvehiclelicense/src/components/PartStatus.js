@@ -117,7 +117,9 @@ function PartStatus() {
                       handlePartStatusChange("frontBumper", e.target.value)
                     }
                   >
-                    <option value="">Please choose an option</option>
+                    <option disabled value="">
+                      Please choose an option
+                    </option>
                     <option value={0}>Original</option>
                     <option value={1}>Changed</option>
                     <option value={2}>Painted</option>
@@ -135,7 +137,9 @@ function PartStatus() {
                       handlePartStatusChange("rearBumper", e.target.value)
                     }
                   >
-                    <option value="">Please choose an option</option>
+                    <option disabled value="">
+                      Please choose an option
+                    </option>
                     <option value={0}>Original</option>
                     <option value={1}>Changed</option>
                     <option value={2}>Painted</option>
@@ -155,7 +159,9 @@ function PartStatus() {
                       handlePartStatusChange("rightFrontDoor", e.target.value)
                     }
                   >
-                    <option value="">Please choose an option</option>
+                    <option disabled value="">
+                      Please choose an option
+                    </option>
                     <option value={0}>Original</option>
                     <option value={1}>Changed</option>
                     <option value={2}>Painted</option>
@@ -173,7 +179,9 @@ function PartStatus() {
                       handlePartStatusChange("leftFrontDoor", e.target.value)
                     }
                   >
-                    <option value="">Please choose an option</option>
+                    <option disabled value="">
+                      Please choose an option
+                    </option>
                     <option value={0}>Original</option>
                     <option value={1}>Changed</option>
                     <option value={2}>Painted</option>
@@ -194,7 +202,9 @@ function PartStatus() {
                       handlePartStatusChange("rightRearDoor", e.target.value)
                     }
                   >
-                    <option value="">Please choose an option</option>
+                    <option disabled value="">
+                      Please choose an option
+                    </option>
                     <option value={0}>Original</option>
                     <option value={1}>Changed</option>
                     <option value={2}>Painted</option>
@@ -212,7 +222,9 @@ function PartStatus() {
                       handlePartStatusChange("leftRearDoor", e.target.value)
                     }
                   >
-                    <option value="">Please choose an option</option>
+                    <option disabled value="">
+                      Please choose an option
+                    </option>
                     <option value={0}>Original</option>
                     <option value={1}>Changed</option>
                     <option value={2}>Painted</option>
@@ -233,7 +245,9 @@ function PartStatus() {
                       handlePartStatusChange("frontHood", e.target.value)
                     }
                   >
-                    <option value="">Please choose an option</option>
+                    <option disabled value="">
+                      Please choose an option
+                    </option>
                     <option value={0}>Original</option>
                     <option value={1}>Changed</option>
                     <option value={2}>Painted</option>
@@ -251,7 +265,9 @@ function PartStatus() {
                       handlePartStatusChange("rearHood", e.target.value)
                     }
                   >
-                    <option value="">Please choose an option</option>
+                    <option disabled value="">
+                      Please choose an option
+                    </option>
                     <option value={0}>Original</option>
                     <option value={1}>Changed</option>
                     <option value={2}>Painted</option>
@@ -272,7 +288,9 @@ function PartStatus() {
                       handlePartStatusChange("rightFrontFender", e.target.value)
                     }
                   >
-                    <option value="">Please choose an option</option>
+                    <option disabled value="">
+                      Please choose an option
+                    </option>
                     <option value={0}>Original</option>
                     <option value={1}>Changed</option>
                     <option value={2}>Painted</option>
@@ -290,7 +308,9 @@ function PartStatus() {
                       handlePartStatusChange("leftFrontFender", e.target.value)
                     }
                   >
-                    <option value="">Please choose an option</option>
+                    <option disabled value="">
+                      Please choose an option
+                    </option>
                     <option value={0}>Original</option>
                     <option value={1}>Changed</option>
                     <option value={2}>Painted</option>
@@ -311,7 +331,9 @@ function PartStatus() {
                       handlePartStatusChange("rightRearFender", e.target.value)
                     }
                   >
-                    <option value="">Please choose an option</option>
+                    <option disabled value="">
+                      Please choose an option
+                    </option>
                     <option value={0}>Original</option>
                     <option value={1}>Changed</option>
                     <option value={2}>Painted</option>
@@ -329,7 +351,9 @@ function PartStatus() {
                       handlePartStatusChange("leftRearFender", e.target.value)
                     }
                   >
-                    <option value="">Please choose an option</option>
+                    <option disabled value="">
+                      Please choose an option
+                    </option>
                     <option value={0}>Original</option>
                     <option value={1}>Changed</option>
                     <option value={2}>Painted</option>
@@ -351,7 +375,9 @@ function PartStatus() {
                         handlePartStatusChange("roof", e.target.value)
                       }
                     >
-                      <option value="">Please choose an option</option>
+                      <option disabled value="">
+                        Please choose an option
+                      </option>
                       <option value={0}>Original</option>
                       <option value={1}>Changed</option>
                       <option value={2}>Painted</option>

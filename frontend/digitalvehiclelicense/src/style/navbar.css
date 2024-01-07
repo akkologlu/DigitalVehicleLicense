@@ -1,5 +1,5 @@
 #navbar a.active {
-  background-color: #22c55e;
+  background-color: #0c4a6e;
   color: #ffffff;
 }
 
@@ -8,7 +8,7 @@
 }
 
 .navLink:hover {
-  background-color: #22c55e;
+  background-color: #0c4a6e;
   color: #ffffff;
   ease: all 0.2s;
   -webkit-transition: all 0.2s;
