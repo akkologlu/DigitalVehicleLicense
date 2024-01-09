@@ -18,7 +18,7 @@ function AddVehicle() {
     try {
       await license.methods
         .addVehicle(
-          parseInt(vehicleId),
+          vehicleId,
           brand,
           model,
           parseInt(year),

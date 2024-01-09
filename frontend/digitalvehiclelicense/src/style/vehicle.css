@@ -1,0 +1,133 @@
+.araba {
+  position: relative;
+}
+.onTampon {
+  width: 130px;
+
+  transform: scaleY(-1);
+  position: absolute;
+  top: 0px;
+  left: 112px;
+}
+
+.arkaTampon {
+  width: 150px;
+  position: absolute;
+  left: 102px;
+  top: 382px;
+}
+.onKapiSag {
+  width: 105px;
+  transform: rotate(90deg) scaleX(-1);
+  position: absolute;
+  left: 7px;
+  top: 252px;
+}
+.arkaKapiSag {
+  width: 105px;
+
+  transform: rotate(90deg);
+  position: absolute;
+  left: 7px;
+  top: 162px;
+}
+
+.onKapiSol {
+  width: 105px;
+
+  transform: rotate(90deg) scaleY(-1);
+  position: absolute;
+  left: 237px;
+  top: 162px;
+}
+.arkaKapiSol {
+  width: 105px;
+
+  transform: rotate(-90deg);
+  position: absolute;
+  left: 237px;
+  top: 252px;
+}
+
+.onSolCamurluk {
+  width: 90px;
+  position: absolute;
+  top: 87px;
+  left: 252px;
+  transform: rotate(90deg) scaleY(-1);
+}
+
+.onSagCamurluk {
+  width: 90px;
+
+  transform: rotate(90deg) scaleY(1);
+  position: absolute;
+  top: 87px;
+  left: 2px;
+}
+
+.teker1 {
+  width: 50px;
+  position: absolute;
+  top: 119px;
+  left: 11px;
+}
+.teker2 {
+  width: 50px;
+  position: absolute;
+  top: 119px;
+  left: 281px;
+}
+.teker3 {
+  width: 50px;
+  position: absolute;
+  top: 370px;
+  left: 274px;
+}
+.teker4 {
+  width: 50px;
+  position: absolute;
+  top: 370px;
+  left: 23px;
+}
+
+.onKaput {
+  width: 158px;
+  position: absolute;
+  top: 82px;
+  left: 97px;
+}
+
+.arkaKaput {
+  width: 145px;
+  position: absolute;
+  top: 312px;
+  left: 102px;
+}
+
+.arkaSagCamurluk {
+  width: 100px;
+  position: absolute;
+  top: 337px;
+  left: 252px;
+  transform: rotate(270deg) scaleY(1);
+}
+
+.arkaSolCamurluk {
+  width: 100px;
+  position: absolute;
+  top: 337px;
+  left: 0px;
+  transform: rotate(270deg) scaleY(-1);
+}
+
+.tavan {
+  width: 115px;
+  height: 115px;
+  border: 3px solid;
+  position: absolute;
+  left: 117px;
+  top: 210px;
+  border-radius: 10px;
+  border-color: black;
+}

@@ -15,7 +15,7 @@ function AddMaintenance() {
     const accounts = await web3.eth.getAccounts();
     try {
       await license.methods
-        .addMaintenance(parseInt(vehicleId), parseInt(dateFormatted), reportId)
+        .addMaintenance(vehicleId, parseInt(dateFormatted), reportId)
         .send({ from: accounts[0] });
       setMessage("success");
 

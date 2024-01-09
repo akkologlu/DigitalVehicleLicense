@@ -1,11 +1,11 @@
 import web3 from "./web3";
 
-const address = "0x517D8C7a9f5C94c2b8aB32AA4845C81e3755607b";
+const address = "0x690B64749003B23Fa88F8287B9E96e1061218D79";
 
 const abi = [
   { inputs: [], stateMutability: "nonpayable", type: "constructor" },
   {
-    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    inputs: [{ internalType: "string", name: "", type: "string" }],
     name: "accidentCounts",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
@@ -13,7 +13,7 @@ const abi = [
   },
   {
     inputs: [
-      { internalType: "uint256", name: "", type: "uint256" },
+      { internalType: "string", name: "", type: "string" },
       { internalType: "uint256", name: "", type: "uint256" },
     ],
     name: "accidentHistories",
@@ -27,7 +27,7 @@ const abi = [
   },
   {
     inputs: [
-      { internalType: "uint256", name: "_vehicleId", type: "uint256" },
+      { internalType: "string", name: "_vehicleId", type: "string" },
       { internalType: "uint256", name: "_date", type: "uint256" },
       { internalType: "string", name: "_description", type: "string" },
     ],
@@ -38,7 +38,7 @@ const abi = [
   },
   {
     inputs: [
-      { internalType: "uint256", name: "_vehicleId", type: "uint256" },
+      { internalType: "string", name: "_vehicleId", type: "string" },
       { internalType: "uint256", name: "_date", type: "uint256" },
       { internalType: "string", name: "_report", type: "string" },
     ],
@@ -49,7 +49,7 @@ const abi = [
   },
   {
     inputs: [
-      { internalType: "uint256", name: "_vehicleId", type: "uint256" },
+      { internalType: "string", name: "_vehicleId", type: "string" },
       { internalType: "string", name: "_brand", type: "string" },
       { internalType: "string", name: "_model", type: "string" },
       { internalType: "uint256", name: "_year", type: "uint256" },
@@ -69,7 +69,7 @@ const abi = [
   },
   {
     inputs: [
-      { internalType: "uint256", name: "_vehicleId", type: "uint256" },
+      { internalType: "string", name: "_vehicleId", type: "string" },
       { internalType: "uint256", name: "_accidentId", type: "uint256" },
     ],
     name: "getAccident",
@@ -89,7 +89,7 @@ const abi = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "uint256", name: "_vehicleId", type: "uint256" }],
+    inputs: [{ internalType: "string", name: "_vehicleId", type: "string" }],
     name: "getAccidentHistory",
     outputs: [
       {
@@ -107,7 +107,7 @@ const abi = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "uint256", name: "_vehicleId", type: "uint256" }],
+    inputs: [{ internalType: "string", name: "_vehicleId", type: "string" }],
     name: "getCompleteVehicleDetails",
     outputs: [
       {
@@ -260,7 +260,7 @@ const abi = [
   },
   {
     inputs: [
-      { internalType: "uint256", name: "_vehicleId", type: "uint256" },
+      { internalType: "string", name: "_vehicleId", type: "string" },
       { internalType: "uint256", name: "_maintenanceId", type: "uint256" },
     ],
     name: "getMaintenance",
@@ -280,7 +280,7 @@ const abi = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "uint256", name: "_vehicleId", type: "uint256" }],
+    inputs: [{ internalType: "string", name: "_vehicleId", type: "string" }],
     name: "getMaintenanceHistory",
     outputs: [
       {
@@ -298,7 +298,7 @@ const abi = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "uint256", name: "_vehicleId", type: "uint256" }],
+    inputs: [{ internalType: "string", name: "_vehicleId", type: "string" }],
     name: "getPartStatus",
     outputs: [
       {
@@ -406,7 +406,7 @@ const abi = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    inputs: [{ internalType: "string", name: "", type: "string" }],
     name: "maintenanceCounts",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
@@ -414,7 +414,7 @@ const abi = [
   },
   {
     inputs: [
-      { internalType: "uint256", name: "", type: "uint256" },
+      { internalType: "string", name: "", type: "string" },
       { internalType: "uint256", name: "", type: "uint256" },
     ],
     name: "maintenanceHistories",
@@ -428,7 +428,7 @@ const abi = [
   },
   {
     inputs: [
-      { internalType: "uint256", name: "", type: "uint256" },
+      { internalType: "string", name: "", type: "string" },
       { internalType: "uint256", name: "", type: "uint256" },
     ],
     name: "ownershipHistories",
@@ -443,7 +443,7 @@ const abi = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    inputs: [{ internalType: "string", name: "", type: "string" }],
     name: "partStatuses",
     outputs: [
       {
@@ -555,7 +555,7 @@ const abi = [
   },
   {
     inputs: [
-      { internalType: "uint256", name: "_vehicleId", type: "uint256" },
+      { internalType: "string", name: "_vehicleId", type: "string" },
       { internalType: "address", name: "_newOwner", type: "address" },
       { internalType: "uint256", name: "_endKilometers", type: "uint256" },
       { internalType: "uint256", name: "_transferYear", type: "uint256" },
@@ -567,7 +567,7 @@ const abi = [
   },
   {
     inputs: [
-      { internalType: "uint256", name: "_vehicleId", type: "uint256" },
+      { internalType: "string", name: "_vehicleId", type: "string" },
       {
         components: [
           {
@@ -678,7 +678,7 @@ const abi = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    inputs: [{ internalType: "string", name: "", type: "string" }],
     name: "vehicles",
     outputs: [
       { internalType: "string", name: "brand", type: "string" },

@@ -16,7 +16,7 @@ function AddAccident() {
     const accounts = await web3.eth.getAccounts();
     try {
       await license.methods
-        .addAccident(parseInt(vehicleId), parseInt(dateFormatted), reportId)
+        .addAccident(vehicleId, parseInt(dateFormatted), reportId)
         .send({ from: accounts[0] });
       setMessage("success");
 
