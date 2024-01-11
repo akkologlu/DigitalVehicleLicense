@@ -29,12 +29,12 @@ function Navbar() {
             </NavLink>
           </div>
           <div>
-            <NavLink to="/registerUser" className="navLink navLinkDiv">
+            <NavLink to="/addOwnership" className="navLink navLinkDiv">
               <FontAwesomeIcon
                 icon={faUserPlus}
                 className="faIcon navLinkIcon "
               />
-              <p className="navp">User</p>
+              <p className="navp">Ownership</p>
             </NavLink>
           </div>
           <div>

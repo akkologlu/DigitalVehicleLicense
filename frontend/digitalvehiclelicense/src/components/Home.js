@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import web3 from "../web3";
 import license from "../license";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { TbReportSearch } from "react-icons/tb";
@@ -8,6 +7,7 @@ import "../style/vehicle.css";
 function Home() {
   const [vehicleDetails, setVehicleDetails] = useState(null);
   const [vehicleId, setVehicleId] = useState("");
+  const [button, setButton] = useState("accidents");
 
   const fetchVehicleDetails = async (e) => {
     e.preventDefault();
@@ -48,153 +48,250 @@ function Home() {
 
     return { fill: fillColor };
   }
-
   console.log(vehicleDetails);
-
   return (
-    <div className="w-full px-36">
+    <div className="w-full px-12">
       <div>
         <form onSubmit={fetchVehicleDetails}>
           <input
+            className="border border-gray-300 mt-5 rounded-xl px-4 py-2 w-96 focus:outline-none"
             type="text"
             placeholder="Enter Vehicle ID"
             value={vehicleId}
             onChange={(event) => setVehicleId(event.target.value)}
           />
-          <button type="submit">Fetch Vehicle Details</button>
         </form>
 
         {vehicleDetails && (
-          <div className="flex flex-col space-y-12 w-full ">
-            <div className="flex flex-col w-fit items-end">
-              <div className="font-bebas">
-                <p className=" text-sky-950 text-9xl font-extrabold">
-                  {" "}
-                  {vehicleDetails.vehicleDetails[0]}{" "}
-                  <span className="text-sky-800 text-7xl font-semibold">
-                    {vehicleDetails.vehicleDetails[1]}
-                  </span>
-                </p>
-              </div>
-              <div className="font-bebas flex space-x-6">
-                <div>
-                  <p className="text-[#0c4a6eb0] text-5xl font-semibold">
-                    {parseInt(vehicleDetails.vehicleDetails[2])}
-                  </p>
+          <div className="flex flex-col space-y-12 w-full mt-12">
+            {vehicleDetails.vehicleDetails[0] === "" ? (
+              <p className="text-sky-950 text-6xl font-extrabold">
+                VEHICLE NOT FOUND
+              </p>
+            ) : (
+              <>
+                <div className="flex flex-col w-fit items-end">
+                  <div className="font-bebas">
+                    <p className=" text-sky-950 text-9xl font-extrabold">
+                      {" "}
+                      {vehicleDetails.vehicleDetails[0]}{" "}
+                      <span className="text-sky-800 text-7xl font-semibold">
+                        {vehicleDetails.vehicleDetails[1]}
+                      </span>
+                    </p>
+                  </div>
+                  <div className="font-bebas flex space-x-6">
+                    <div>
+                      <p className="text-[#0c4a6eb0] text-5xl font-semibold">
+                        {parseInt(vehicleDetails.vehicleDetails[2])}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[#0c4a6eb0] text-5xl font-semibold">
+                        {parseInt(vehicleDetails.vehicleDetails[3])} KM
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-[#0c4a6eb0] text-5xl font-semibold">
-                    {parseInt(vehicleDetails.vehicleDetails[3])} KM
-                  </p>
-                </div>
-              </div>
-            </div>
+              </>
+            )}
 
-            <div className="flex space-x-12 w-full flex-wrap relative">
-              <div className="flex  space-x-12 flex-wrap">
-                <div>
-                  <div className="min-h-96 rounded-2xl shadow-xl min-w-96 flex flex-col items-center p-5 font-roboto text-lg text-sky-900">
-                    <p className="font-bebas text-4xl text-sky-900">
+            <div className="flex justify-center lg:justify-start space-x-12 w-full flex-wrap relative ">
+              <div className="flex  flex-col flex-wrap 2xl:w-[60%] w-full ">
+                <div className="flex lg:justify-start justify-center space-x-12">
+                  <button
+                    onClick={() => {
+                      setButton("accidents");
+                    }}
+                  >
+                    <p
+                      className={
+                        button === "accidents"
+                          ? "font-bebas text-4xl text-sky-900"
+                          : "font-bebas text-2xl text-gray-400"
+                      }
+                    >
                       ACCIDENTS
                     </p>
-                    {vehicleDetails.vehicleAccidentHistory.length > 0 ? (
-                      <>
-                        {vehicleDetails.vehicleAccidentHistory.map(
-                          (accident) => {
-                            return (
-                              <div
-                                key={accident.id}
-                                className="flex space-x-12 bg-sky-50 w-fit rounded-2xl p-4 my-4"
-                              >
-                                <div className="flex items-center space-x-2">
-                                  <FaRegCalendarAlt />
-
-                                  <p>{dateConverter(accident.date)}</p>
-                                </div>
-
-                                <div>
-                                  <a
-                                    className="flex items-center space-x-2 rounded-xl px-2 py-1 bg-sky-700 text-white"
-                                    href={accident.description}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                  >
-                                    <TbReportSearch />
-                                    <p>Report</p>
-                                  </a>
-                                </div>
-                              </div>
-                            );
-                          }
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        <p>NO ACCIDENT HISTORY</p>
-                      </>
-                    )}
-                  </div>
-                </div>
-                <div>
-                  <div className="rounded-2xl min-h-96 shadow-xl min-w-96 flex flex-col items-center p-5 font-roboto text-lg text-sky-900">
-                    <p className="font-bebas text-4xl text-sky-900">
-                      MAINTENANCE
+                  </button>
+                  <button
+                    onClick={() => {
+                      setButton("maintenances");
+                    }}
+                  >
+                    <p
+                      className={
+                        button === "maintenances"
+                          ? "font-bebas text-4xl text-sky-900"
+                          : "font-bebas text-2xl text-gray-400"
+                      }
+                    >
+                      MAINTENANCES
                     </p>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setButton("ownerships");
+                    }}
+                  >
+                    <p
+                      className={
+                        button === "ownerships"
+                          ? "font-bebas text-4xl text-sky-900"
+                          : "font-bebas text-2xl text-gray-400"
+                      }
+                    >
+                      OWNERSHIPS
+                    </p>
+                  </button>
+                </div>
+                {button === "accidents" ? (
+                  <div>
+                    <div className=" font-roboto text-lg text-sky-900">
+                      {vehicleDetails.vehicleAccidentHistory.length > 0 ? (
+                        <>
+                          {vehicleDetails.vehicleAccidentHistory.map(
+                            (accident) => {
+                              return (
+                                <div
+                                  key={accident.id}
+                                  className="flex  w-full bg-sky-50 justify-between rounded-2xl px-12 p-4 my-4"
+                                >
+                                  <div className="flex items-center space-x-2">
+                                    <FaRegCalendarAlt />
 
-                    {vehicleDetails.vehicleMaintenanceHistory.length > 0 ? (
+                                    <p>{dateConverter(accident.date)}</p>
+                                  </div>
+
+                                  <div>
+                                    <a
+                                      className="flex items-center space-x-2 rounded-xl px-2 py-1 bg-sky-700 text-white"
+                                      href={accident.description}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                    >
+                                      <TbReportSearch />
+                                      <p>Report</p>
+                                    </a>
+                                  </div>
+                                </div>
+                              );
+                            }
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <p>NO ACCIDENT HISTORY</p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    {button === "maintenances" ? (
                       <>
-                        {vehicleDetails.vehicleMaintenanceHistory.map(
-                          (maintenance) => {
-                            return (
-                              <div
-                                key={maintenance.id}
-                                className="flex space-x-12 bg-sky-50 w-fit rounded-2xl p-4 my-4"
-                              >
-                                <div className="flex items-center space-x-2">
-                                  <FaRegCalendarAlt />
+                        <div>
+                          <div className=" font-roboto text-lg text-sky-900">
+                            {vehicleDetails.vehicleMaintenanceHistory.length >
+                            0 ? (
+                              <>
+                                {vehicleDetails.vehicleMaintenanceHistory.map(
+                                  (maintenance) => {
+                                    return (
+                                      <div
+                                        key={maintenance.id}
+                                        className="flex  w-full bg-sky-50 justify-between rounded-2xl px-12 p-4 my-4"
+                                      >
+                                        <div className="flex items-center space-x-2">
+                                          <FaRegCalendarAlt />
 
-                                  <p>{dateConverter(maintenance.date)}</p>
-                                </div>
+                                          <p>
+                                            {dateConverter(maintenance.date)}
+                                          </p>
+                                        </div>
 
-                                <div>
-                                  <a
-                                    className="flex items-center space-x-2 rounded-xl px-2 py-1 bg-sky-700 text-white"
-                                    href={maintenance.report}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                  >
-                                    <TbReportSearch />
-                                    <p>Report</p>
-                                  </a>
-                                </div>
-                              </div>
-                            );
-                          }
-                        )}
+                                        <div>
+                                          <a
+                                            className="flex items-center space-x-2 rounded-xl px-2 py-1 bg-sky-700 text-white"
+                                            href={maintenance.report}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                          >
+                                            <TbReportSearch />
+                                            <p>Report</p>
+                                          </a>
+                                        </div>
+                                      </div>
+                                    );
+                                  }
+                                )}
+                              </>
+                            ) : (
+                              <>
+                                <p>NO MAINTENANCE HISTORY</p>
+                              </>
+                            )}
+                          </div>
+                        </div>
                       </>
                     ) : (
                       <>
-                        <p>NO MAINTENANCE HISTORY</p>
+                        <div className="  font-roboto text-lg text-sky-900">
+                          {vehicleDetails.vehicleMaintenanceHistory.length >
+                          0 ? (
+                            <>
+                              {vehicleDetails.vehicleMaintenanceHistory.map(
+                                (maintenance) => {
+                                  return (
+                                    <div
+                                      key={maintenance.id}
+                                      className="flex  w-full bg-sky-50 justify-between rounded-2xl px-12 p-4 my-4"
+                                    >
+                                      <div className="flex items-center space-x-2">
+                                        <FaRegCalendarAlt />
+
+                                        <p>{dateConverter(maintenance.date)}</p>
+                                      </div>
+
+                                      <div>
+                                        <a
+                                          className="flex items-center space-x-2 rounded-xl px-2 py-1 bg-sky-700 text-white"
+                                          href={maintenance.report}
+                                          target="_blank"
+                                          rel="noreferrer"
+                                        >
+                                          <TbReportSearch />
+                                          <p>Report</p>
+                                        </a>
+                                      </div>
+                                    </div>
+                                  );
+                                }
+                              )}
+                            </>
+                          ) : (
+                            <>
+                              <p>NO MAINTENANCE HISTORY</p>
+                            </>
+                          )}
+                        </div>
                       </>
                     )}
-                  </div>
-                </div>
+                  </>
+                )}
               </div>
-              <div className="w-[350px] h-[600px] rounded-xl pt-5 shadow-2xl">
-                <p className="font-bebas text-center text-4xl text-sky-900">
-                  PART STATUS
-                </p>
-                <div class="araba ">
-                  <div class="onTampon">
+              <div className="  min-w-[350px]">
+                <div className="araba ">
+                  <div className="onTampon">
                     <svg
                       viewBox="0 0 417 521.25"
                       version="1.1"
                       x="0px"
                       y="0px"
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      stroke-linejoin="round"
-                      stroke-miterlimit="2"
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      strokeLinejoin="round"
+                      strokeMiterlimit="2"
                     >
                       <rect
                         x="0"
@@ -212,7 +309,7 @@ function Home() {
                     </svg>
                   </div>
 
-                  <div class="arkaTampon">
+                  <div className="arkaTampon">
                     <svg
                       data-name="Layer 1"
                       viewBox="0 0 512 640"
@@ -269,7 +366,7 @@ function Home() {
                       />
                     </svg>
                   </div>
-                  <div class="arkaKapiSag">
+                  <div className="arkaKapiSag">
                     <svg
                       version="1.1"
                       x="0px"
@@ -327,7 +424,7 @@ function Home() {
                       </g>
                     </svg>
                   </div>
-                  <div class="onKapiSag">
+                  <div className="onKapiSag">
                     <svg
                       version="1.1"
                       x="0px"
@@ -385,7 +482,7 @@ function Home() {
                       </g>
                     </svg>
                   </div>
-                  <div class="onKapiSol">
+                  <div className="onKapiSol">
                     <svg
                       version="1.1"
                       x="0px"
@@ -449,7 +546,7 @@ function Home() {
                       </g>
                     </svg>
                   </div>
-                  <div class="arkaKapiSol">
+                  <div className="arkaKapiSol">
                     <svg
                       version="1.1"
                       x="0px"
@@ -508,7 +605,7 @@ function Home() {
                     </svg>
                   </div>
 
-                  <div class="arkaSolCamurluk">
+                  <div className="arkaSolCamurluk">
                     <svg
                       version="1.1"
                       x="0px"
@@ -534,7 +631,7 @@ function Home() {
                       </g>
                     </svg>
                   </div>
-                  <div class="arkaSagCamurluk">
+                  <div className="arkaSagCamurluk">
                     <svg
                       version="1.1"
                       x="0px"
@@ -561,7 +658,7 @@ function Home() {
                     </svg>
                   </div>
 
-                  <div class="arkaKaput">
+                  <div className="arkaKaput">
                     <svg viewBox="0 0 64 80" x="0px" y="0px">
                       <g>
                         <path
@@ -574,13 +671,13 @@ function Home() {
                     </svg>
                   </div>
 
-                  <div class="onKaput">
+                  <div className="onKaput">
                     <svg
                       version="1.1"
                       x="0px"
                       y="0px"
                       viewBox="0 0 100 125"
-                      enable-background="new 0 0 100 100"
+                      enableBackground="new 0 0 100 100"
                     >
                       <path
                         style={getFillColor(
@@ -596,13 +693,13 @@ function Home() {
                       />
                     </svg>
                   </div>
-                  <div class="onSolCamurluk">
+                  <div className="onSolCamurluk">
                     <svg
                       version="1.1"
                       x="0px"
                       y="0px"
                       viewBox="0 0 100 125"
-                      enable-background="new 0 0 100 100"
+                      enableBackground="new 0 0 100 100"
                     >
                       <path
                         style={getFillColor(
@@ -614,13 +711,13 @@ function Home() {
                     </svg>
                   </div>
 
-                  <div class="onSagCamurluk">
+                  <div className="onSagCamurluk">
                     <svg
                       version="1.1"
                       x="0px"
                       y="0px"
                       viewBox="0 0 100 125"
-                      enable-background="new 0 0 100 100"
+                      enableBackground="new 0 0 100 100"
                     >
                       <path
                         style={getFillColor(
@@ -632,7 +729,7 @@ function Home() {
                     </svg>
                   </div>
 
-                  <div class="teker1">
+                  <div className="teker1">
                     <svg
                       version="1.1"
                       x="0px"
@@ -658,7 +755,7 @@ function Home() {
                     </svg>
                   </div>
 
-                  <div class="teker2">
+                  <div className="teker2">
                     <svg
                       version="1.1"
                       x="0px"
@@ -684,7 +781,7 @@ function Home() {
                     </svg>
                   </div>
 
-                  <div class="teker3">
+                  <div className="teker3">
                     <svg
                       version="1.1"
                       x="0px"
@@ -710,7 +807,7 @@ function Home() {
                     </svg>
                   </div>
 
-                  <div class="teker4">
+                  <div className="teker4">
                     <svg
                       version="1.1"
                       x="0px"
@@ -736,7 +833,7 @@ function Home() {
                     </svg>
                   </div>
                   <div
-                    class="tavan"
+                    className="tavan"
                     style={{
                       borderColor:
                         vehicleDetails.vehiclePartStatus.roof === 0n

@@ -1,6 +1,6 @@
 import web3 from "./web3";
 
-const address = "0x690B64749003B23Fa88F8287B9E96e1061218D79";
+const address = "0x993E7089F70d774e9af808Ab990E9c411A5256F0";
 
 const abi = [
   { inputs: [], stateMutability: "nonpayable", type: "constructor" },
@@ -43,6 +43,21 @@ const abi = [
       { internalType: "string", name: "_report", type: "string" },
     ],
     name: "addMaintenance",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "string", name: "_vehicleId", type: "string" },
+      { internalType: "string", name: "name", type: "string" },
+      { internalType: "string", name: "profession", type: "string" },
+      { internalType: "uint256", name: "_startYear", type: "uint256" },
+      { internalType: "uint256", name: "_endYear", type: "uint256" },
+      { internalType: "uint256", name: "_startKilometers", type: "uint256" },
+      { internalType: "uint256", name: "_endKilometers", type: "uint256" },
+    ],
+    name: "addOwnership",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -124,18 +139,6 @@ const abi = [
       },
       {
         components: [
-          { internalType: "address", name: "owner", type: "address" },
-          { internalType: "uint256", name: "startYear", type: "uint256" },
-          { internalType: "uint256", name: "endYear", type: "uint256" },
-          { internalType: "uint256", name: "startKilometers", type: "uint256" },
-          { internalType: "uint256", name: "endKilometers", type: "uint256" },
-        ],
-        internalType: "struct License.OwnershipHistory[]",
-        name: "vehicleOwnershipHistory",
-        type: "tuple[]",
-      },
-      {
-        components: [
           { internalType: "uint256", name: "id", type: "uint256" },
           { internalType: "uint256", name: "date", type: "uint256" },
           { internalType: "string", name: "description", type: "string" },
@@ -152,6 +155,20 @@ const abi = [
         ],
         internalType: "struct License.Maintenance[]",
         name: "vehicleMaintenanceHistory",
+        type: "tuple[]",
+      },
+      {
+        components: [
+          { internalType: "uint256", name: "id", type: "uint256" },
+          { internalType: "string", name: "name", type: "string" },
+          { internalType: "string", name: "profession", type: "string" },
+          { internalType: "uint256", name: "startYear", type: "uint256" },
+          { internalType: "uint256", name: "endYear", type: "uint256" },
+          { internalType: "uint256", name: "startKilometers", type: "uint256" },
+          { internalType: "uint256", name: "endKilometers", type: "uint256" },
+        ],
+        internalType: "struct License.Ownership[]",
+        name: "vehicleOwnershipHistory",
         type: "tuple[]",
       },
       {
@@ -298,6 +315,53 @@ const abi = [
     type: "function",
   },
   {
+    inputs: [
+      { internalType: "string", name: "_vehicleId", type: "string" },
+      { internalType: "uint256", name: "_ownershipId", type: "uint256" },
+    ],
+    name: "getOwnership",
+    outputs: [
+      {
+        components: [
+          { internalType: "uint256", name: "id", type: "uint256" },
+          { internalType: "string", name: "name", type: "string" },
+          { internalType: "string", name: "profession", type: "string" },
+          { internalType: "uint256", name: "startYear", type: "uint256" },
+          { internalType: "uint256", name: "endYear", type: "uint256" },
+          { internalType: "uint256", name: "startKilometers", type: "uint256" },
+          { internalType: "uint256", name: "endKilometers", type: "uint256" },
+        ],
+        internalType: "struct License.Ownership",
+        name: "",
+        type: "tuple",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "string", name: "_vehicleId", type: "string" }],
+    name: "getOwnershipHistory",
+    outputs: [
+      {
+        components: [
+          { internalType: "uint256", name: "id", type: "uint256" },
+          { internalType: "string", name: "name", type: "string" },
+          { internalType: "string", name: "profession", type: "string" },
+          { internalType: "uint256", name: "startYear", type: "uint256" },
+          { internalType: "uint256", name: "endYear", type: "uint256" },
+          { internalType: "uint256", name: "startKilometers", type: "uint256" },
+          { internalType: "uint256", name: "endKilometers", type: "uint256" },
+        ],
+        internalType: "struct License.Ownership[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [{ internalType: "string", name: "_vehicleId", type: "string" }],
     name: "getPartStatus",
     outputs: [
@@ -427,13 +491,22 @@ const abi = [
     type: "function",
   },
   {
+    inputs: [{ internalType: "string", name: "", type: "string" }],
+    name: "ownershipCounts",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       { internalType: "string", name: "", type: "string" },
       { internalType: "uint256", name: "", type: "uint256" },
     ],
     name: "ownershipHistories",
     outputs: [
-      { internalType: "address", name: "owner", type: "address" },
+      { internalType: "uint256", name: "id", type: "uint256" },
+      { internalType: "string", name: "name", type: "string" },
+      { internalType: "string", name: "profession", type: "string" },
       { internalType: "uint256", name: "startYear", type: "uint256" },
       { internalType: "uint256", name: "endYear", type: "uint256" },
       { internalType: "uint256", name: "startKilometers", type: "uint256" },
@@ -545,28 +618,6 @@ const abi = [
   },
   {
     inputs: [
-      { internalType: "string", name: "_name", type: "string" },
-      { internalType: "string", name: "_profession", type: "string" },
-    ],
-    name: "registerUser",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "string", name: "_vehicleId", type: "string" },
-      { internalType: "address", name: "_newOwner", type: "address" },
-      { internalType: "uint256", name: "_endKilometers", type: "uint256" },
-      { internalType: "uint256", name: "_transferYear", type: "uint256" },
-    ],
-    name: "transferVehicle",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
       { internalType: "string", name: "_vehicleId", type: "string" },
       {
         components: [
@@ -665,16 +716,6 @@ const abi = [
     name: "updatePartStatus",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "", type: "address" }],
-    name: "users",
-    outputs: [
-      { internalType: "string", name: "name", type: "string" },
-      { internalType: "string", name: "profession", type: "string" },
-    ],
-    stateMutability: "view",
     type: "function",
   },
   {

@@ -2,10 +2,7 @@
 pragma solidity ^0.8.9;
 
 contract License {
-    struct User {
-        string name;
-        string profession;
-    }
+
 
     struct Vehicle {
         string brand;
@@ -15,8 +12,10 @@ contract License {
         address currentOwner;
     }
 
-    struct OwnershipHistory {
-        address owner;
+    struct Ownership {
+        uint id;
+        string name;
+        string profession;
         uint startYear;
         uint endYear;
         uint startKilometers;
@@ -69,13 +68,13 @@ contract License {
         DoorStatus doors;
     }
 
-    mapping(address => User) public users;
     mapping(string => Vehicle) public vehicles;
-    mapping(string => OwnershipHistory[]) public ownershipHistories;
     mapping(string => mapping(uint => Accident)) public accidentHistories;
+    mapping(string => mapping(uint => Ownership)) public ownershipHistories;
     mapping(string => mapping(uint => Maintenance)) public maintenanceHistories;
     mapping(string => uint) public accidentCounts;
     mapping(string => uint) public maintenanceCounts;
+    mapping(string => uint) public ownershipCounts;
     mapping(string => PartStatus) public partStatuses;
 
     address public authorizedDealer;
@@ -89,10 +88,6 @@ contract License {
         _;
     }
 
-    function registerUser(string memory _name, string memory _profession) public {
-        User memory newUser = User({name: _name, profession: _profession});
-        users[msg.sender] = newUser;
-    }
 
     function addVehicle(string memory _vehicleId, string memory _brand, string memory _model, uint _year, uint _kilometers) public  {
         Vehicle memory newVehicle = Vehicle({
@@ -139,21 +134,6 @@ contract License {
         partStatuses[_vehicleId] = defaultPartStatus;
     }
 
-    function transferVehicle(string memory _vehicleId, address _newOwner, uint _endKilometers, uint _transferYear) public {
-        require(vehicles[_vehicleId].currentOwner == msg.sender, "Only the current owner can transfer the vehicle");
-
-        OwnershipHistory memory newHistory = OwnershipHistory({
-            owner: msg.sender,
-            startYear: block.timestamp,
-            endYear: _transferYear,
-            startKilometers: vehicles[_vehicleId].kilometers,
-            endKilometers: _endKilometers
-        });
-        ownershipHistories[_vehicleId].push(newHistory);
-
-        vehicles[_vehicleId].currentOwner = _newOwner;
-        vehicles[_vehicleId].kilometers = _endKilometers;
-    }
 
     function addAccident(string memory _vehicleId, uint _date, string memory _description) public  {
         uint accidentId = accidentCounts[_vehicleId]++;
@@ -197,6 +177,27 @@ contract License {
         }
         return maintenances;
     }
+
+    function addOwnership(string memory _vehicleId,string memory name, string memory profession, uint _startYear, uint _endYear, uint _startKilometers, uint _endKilometers) public  {
+        uint ownershipId = ownershipCounts[_vehicleId]++;
+        Ownership memory newOwnership = Ownership({id: ownershipId, name:name, profession:profession, startYear: _startYear, endYear: _endYear, startKilometers:_startKilometers, endKilometers:_endKilometers});
+        ownershipHistories[_vehicleId][ownershipId] = newOwnership;
+    }
+
+     function getOwnership(string memory _vehicleId, uint _ownershipId) public view returns (Ownership memory) {
+        require(_ownershipId < ownershipCounts[_vehicleId], "Maintenance does not exist");
+        return ownershipHistories[_vehicleId][_ownershipId];
+    }
+
+    function getOwnershipHistory(string memory _vehicleId) public view returns (Ownership[] memory) {
+        uint ownershipCount = ownershipCounts[_vehicleId];
+        Ownership[] memory ownerships = new Ownership[](ownershipCount);
+
+        for (uint i = 0; i < ownershipCount; i++) {
+            ownerships[i] = ownershipHistories[_vehicleId][i];
+        }
+        return ownerships;
+    }
     
     function updatePartStatus(string memory _vehicleId, BumperStatus memory _bumpers, HoodStatus memory _hoods, PartStatusType _roof, FenderStatus memory _fenders, DoorStatus memory _doors) public  {
         PartStatus storage status = partStatuses[_vehicleId];
@@ -209,15 +210,15 @@ contract License {
 
     function getCompleteVehicleDetails(string memory _vehicleId) public view returns (
         Vehicle memory vehicleDetails,
-        OwnershipHistory[] memory vehicleOwnershipHistory,
         Accident[] memory vehicleAccidentHistory,
         Maintenance[] memory vehicleMaintenanceHistory,
+        Ownership[] memory vehicleOwnershipHistory,
         PartStatus memory vehiclePartStatus
     ) {
         vehicleDetails = vehicles[_vehicleId];
-        vehicleOwnershipHistory = ownershipHistories[_vehicleId];
         vehicleAccidentHistory = getAccidentHistory(_vehicleId);
         vehicleMaintenanceHistory = getMaintenanceHistory(_vehicleId);
+        vehicleOwnershipHistory = getOwnershipHistory(_vehicleId);
         vehiclePartStatus = partStatuses[_vehicleId];
     }
 
