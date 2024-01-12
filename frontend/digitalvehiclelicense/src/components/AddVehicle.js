@@ -8,8 +8,8 @@ function AddVehicle() {
   const [vehicleId, setVehicleId] = useState("");
   const [brand, setBrand] = useState("");
   const [model, setModel] = useState("");
-  const [year, setYear] = useState("");
-  const [kilometers, setKilometers] = useState("");
+  const [year, setYear] = useState(0);
+  const [kilometers, setKilometers] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,7 +79,7 @@ function AddVehicle() {
           <div className="inputDiv">
             <label className="formLabel">Year</label>
             <input
-              type="text"
+              type="number"
               className="formInput"
               value={year}
               onChange={(event) => setYear(event.target.value)}
@@ -92,7 +92,7 @@ function AddVehicle() {
           <div className="formRow">
             <div className="flex flex-col">
               <input
-                type="text"
+                type="number"
                 className="formInput"
                 value={kilometers}
                 onChange={(event) => setKilometers(event.target.value)}

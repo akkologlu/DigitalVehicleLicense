@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import license from "../license";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { TbReportSearch } from "react-icons/tb";
+import { PiPathBold } from "react-icons/pi";
+import { CgProfile } from "react-icons/cg";
+import { ImProfile } from "react-icons/im";
+
 import "../style/vehicle.css";
 
 function Home() {
@@ -237,32 +241,47 @@ function Home() {
                     ) : (
                       <>
                         <div className="  font-roboto text-lg text-sky-900">
-                          {vehicleDetails.vehicleMaintenanceHistory.length >
-                          0 ? (
+                          {vehicleDetails.vehicleOwnershipHistory.length > 0 ? (
                             <>
-                              {vehicleDetails.vehicleMaintenanceHistory.map(
-                                (maintenance) => {
+                              {vehicleDetails.vehicleOwnershipHistory.map(
+                                (ownership) => {
                                   return (
                                     <div
-                                      key={maintenance.id}
-                                      className="flex  w-full bg-sky-50 justify-between rounded-2xl px-12 p-4 my-4"
+                                      key={ownership.id}
+                                      className="flex  w-full bg-sky-50  rounded-2xl px-12 p-4 my-4"
                                     >
-                                      <div className="flex items-center space-x-2">
-                                        <FaRegCalendarAlt />
+                                      <div className="flex items-center space-x-2 w-[20%] ">
+                                        <CgProfile />
 
-                                        <p>{dateConverter(maintenance.date)}</p>
+                                        <p>{ownership.name}</p>
                                       </div>
 
-                                      <div>
-                                        <a
-                                          className="flex items-center space-x-2 rounded-xl px-2 py-1 bg-sky-700 text-white"
-                                          href={maintenance.report}
-                                          target="_blank"
-                                          rel="noreferrer"
-                                        >
-                                          <TbReportSearch />
-                                          <p>Report</p>
-                                        </a>
+                                      <div className="flex items-center space-x-2 w-[20%] ">
+                                        <ImProfile />
+
+                                        <p>{ownership.profession}</p>
+                                      </div>
+                                      <div className="flex items-center space-x-2 w-[20%] justify-center">
+                                        <FaRegCalendarAlt />
+
+                                        <p>
+                                          {ownership.startYear
+                                            .toString()
+                                            .slice(0, 4)}{" "}
+                                          -{" "}
+                                          {ownership.endYear
+                                            .toString()
+                                            .slice(0, 4)}
+                                        </p>
+                                      </div>
+
+                                      <div className="flex items-center space-x-2 w-[40%] justify-center">
+                                        <PiPathBold />
+                                        <p>
+                                          {ownership.startKilometers.toString()}
+                                          KM -{" "}
+                                          {ownership.endKilometers.toString()}KM
+                                        </p>
                                       </div>
                                     </div>
                                   );
@@ -271,7 +290,7 @@ function Home() {
                             </>
                           ) : (
                             <>
-                              <p>NO MAINTENANCE HISTORY</p>
+                              <p>NO OWNERSHIP HISTORY</p>
                             </>
                           )}
                         </div>

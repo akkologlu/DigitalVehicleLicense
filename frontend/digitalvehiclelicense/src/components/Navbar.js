@@ -28,15 +28,7 @@ function Navbar() {
               <p className="navp">Home</p>
             </NavLink>
           </div>
-          <div>
-            <NavLink to="/addOwnership" className="navLink navLinkDiv">
-              <FontAwesomeIcon
-                icon={faUserPlus}
-                className="faIcon navLinkIcon "
-              />
-              <p className="navp">Ownership</p>
-            </NavLink>
-          </div>
+
           <div>
             <NavLink to="/addVehicle" className="navLink navLinkDiv">
               <FontAwesomeIcon
@@ -62,6 +54,15 @@ function Navbar() {
                 className="faIcon navLinkIcon"
               />
               <p className="navp">Maintenance</p>
+            </NavLink>
+          </div>
+          <div>
+            <NavLink to="/addOwnership" className="navLink navLinkDiv">
+              <FontAwesomeIcon
+                icon={faUserPlus}
+                className="faIcon navLinkIcon "
+              />
+              <p className="navp">Ownership</p>
             </NavLink>
           </div>
           <div>
