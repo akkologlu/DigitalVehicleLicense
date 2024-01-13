@@ -12,9 +12,36 @@ function AddOwnership() {
   const [startDate, setStartDate] = useState(0);
   const [startKM, setStartKM] = useState(0);
   const [endKM, setEndKM] = useState(0);
+  const [errorVehicleId, setErrorVehicleId] = useState(false);
+  const [errorName, setErrorName] = useState(false);
+  const [errorProfession, setErrorProfession] = useState(false);
+  const [errorStartDate, setErrorStartDate] = useState(false);
+  const [errorEndDate, setErrorEndDate] = useState(false);
+  const [errorStartKM, setErrorStartKM] = useState(false);
+  const [errorEndKM, setErrorEndKM] = useState(false);
+
+  const validateInput = () => {
+    setErrorVehicleId(!vehicleId);
+    setErrorName(!name);
+    setErrorProfession(!profession);
+    setErrorStartDate(!startDate);
+    setErrorEndDate(!endDate);
+    setErrorStartKM(!startKM);
+    setErrorEndKM(!endKM);
+    return (
+      vehicleId &&
+      name &&
+      profession &&
+      startDate &&
+      endDate &&
+      startKM &&
+      endKM
+    );
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateInput()) return;
     setMessage("waiting");
     const accounts = await web3.eth.getAccounts();
     try {
@@ -88,6 +115,7 @@ function AddOwnership() {
               className="formInput"
               type="text"
             />
+            {errorName && <p className="errorText">* Name is required</p>}
           </div>
           <div className="inputDiv">
             <label className="formLabel">Profession</label>
@@ -97,6 +125,9 @@ function AddOwnership() {
               className="formInput"
               type="text"
             />
+            {errorProfession && (
+              <p className="errorText">* Profession is required</p>
+            )}
           </div>
         </div>
         <div className="formRow">
@@ -108,6 +139,7 @@ function AddOwnership() {
               className="formInput w-48"
               type="date"
             />
+            {errorStartDate && <p className="errorText">* Date is required</p>}
           </div>
           <div className="inputDiv">
             <label className="formLabel">End Date</label>
@@ -117,6 +149,7 @@ function AddOwnership() {
               className="formInput w-48"
               type="date"
             />
+            {errorEndDate && <p className="errorText">* Date is required</p>}
           </div>
         </div>
 
@@ -129,6 +162,7 @@ function AddOwnership() {
               className="formInput w-48"
               type="number"
             />
+            {errorStartKM && <p className="errorText">* KM is required</p>}
           </div>
           <div className="inputDiv">
             <label className="formLabel">End KM</label>
@@ -138,6 +172,7 @@ function AddOwnership() {
               className="formInput w-48"
               type="number"
             />
+            {errorEndKM && <p className="errorText">* KM is required</p>}
           </div>
         </div>
 
@@ -151,6 +186,9 @@ function AddOwnership() {
                 className="formInput"
                 type="text"
               />
+              {errorVehicleId && (
+                <p className="errorText">* Vehicle ID is required</p>
+              )}
             </div>
             <div className="w-full">
               <button className="formButton" type="submit">
@@ -181,8 +219,16 @@ function AddOwnership() {
                       </>
                     ) : (
                       <>
-                        <FaCheckCircle className="text-lg mr-2" />
-                        <p className="text-sm">Transaction successful</p>
+                        {message === "error" ? (
+                          <>
+                            <p className="text-sm">Error occured</p>
+                          </>
+                        ) : (
+                          <>
+                            <FaCheckCircle className="text-lg mr-2" />
+                            <p className="text-sm">Transaction successful</p>
+                          </>
+                        )}
                       </>
                     )}
                   </>

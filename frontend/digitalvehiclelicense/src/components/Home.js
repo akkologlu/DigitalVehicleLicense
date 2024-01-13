@@ -866,6 +866,17 @@ function Home() {
                     }}
                   ></div>
                 </div>
+                <div>
+                  <p className="text-black font-semibold font-roboto">
+                    * Original
+                  </p>
+                  <p className="text-blue-600 font-semibold font-roboto">
+                    * Painted
+                  </p>
+                  <p className="text-red-600 font-semibold font-roboto">
+                    * Changed
+                  </p>
+                </div>
               </div>
             </div>
           </div>

@@ -66,3 +66,7 @@ code {
 .navp {
   @apply lg:block hidden;
 }
+
+.errorText {
+  @apply text-red-500 text-xs;
+}

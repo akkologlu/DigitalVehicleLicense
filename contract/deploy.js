@@ -2,10 +2,7 @@ const HDWalletProvider = require("@truffle/hdwallet-provider");
 const { Web3 } = require("web3");
 const { abi, evm } = require("./compile");
 
-const provider = new HDWalletProvider(
-  "laundry trim joke eye lottery bachelor three final acquire early snake truth",
-  "https://sepolia.infura.io/v3/c29a4ab280a3487ab244e1ce962e2985"
-);
+const provider = new HDWalletProvider("MNEUMONIC", "TEST_URL");
 const web3 = new Web3(provider);
 
 const deploy = async () => {

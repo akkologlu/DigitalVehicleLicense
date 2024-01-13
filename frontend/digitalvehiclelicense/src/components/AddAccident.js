@@ -9,9 +9,20 @@ function AddAccident() {
   const [date, setDate] = useState("");
   const [dateFormatted, setDateFormatted] = useState(0);
   const [reportId, setReportId] = useState("");
+  const [errorVehicleId, setErrorVehicleId] = useState(false);
+  const [errorDate, setErrorDate] = useState(false);
+  const [errorReportId, setErrorReportId] = useState(false);
+
+  const validateInput = () => {
+    setErrorVehicleId(!vehicleId);
+    setErrorDate(!date);
+    setErrorReportId(!reportId);
+    return vehicleId && date && reportId;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateInput()) return;
     setMessage("waiting");
     const accounts = await web3.eth.getAccounts();
     try {
@@ -57,19 +68,29 @@ function AddAccident() {
             <label className="formLabel">Vehicle ID</label>
             <input
               value={vehicleId}
-              onChange={(event) => setVehicleId(event.target.value)}
+              onChange={(event) => {
+                setVehicleId(event.target.value);
+                setErrorVehicleId(false);
+              }}
               className="formInput"
               type="text"
             />
+            {errorVehicleId && (
+              <p className="errorText">* Vehicle ID is required</p>
+            )}
           </div>
           <div className="inputDiv">
             <label className="formLabel">Date</label>
             <input
               value={date}
-              onChange={(e) => handleChangeDate(e)}
+              onChange={(e) => {
+                handleChangeDate(e);
+                setErrorDate(false);
+              }}
               className="formInput w-48"
               type="date"
             />
+            {errorDate && <p className="errorText">* Date is required</p>}
           </div>
         </div>
         <div className="flex flex-col  space-y-1">
@@ -78,10 +99,16 @@ function AddAccident() {
             <div className="flex flex-col">
               <input
                 value={reportId}
-                onChange={(event) => setReportId(event.target.value)}
+                onChange={(event) => {
+                  setReportId(event.target.value);
+                  setErrorReportId(false);
+                }}
                 type="text"
                 className="formInput"
               />
+              {errorReportId && (
+                <p className="errorText">* Report ID is required</p>
+              )}
             </div>
             <div className="w-full">
               <button className="formButton" type="submit">
@@ -112,8 +139,16 @@ function AddAccident() {
                       </>
                     ) : (
                       <>
-                        <FaCheckCircle className="text-lg mr-2" />
-                        <p className="text-sm">Transaction successful</p>
+                        {message === "error" ? (
+                          <>
+                            <p className="text-sm">Error occured</p>
+                          </>
+                        ) : (
+                          <>
+                            <FaCheckCircle className="text-lg mr-2" />
+                            <p className="text-sm">Transaction successful</p>
+                          </>
+                        )}
                       </>
                     )}
                   </>
