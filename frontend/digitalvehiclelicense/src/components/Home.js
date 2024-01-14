@@ -52,7 +52,6 @@ function Home() {
 
     return { fill: fillColor };
   }
-  console.log(vehicleDetails);
   return (
     <div className="w-full px-12">
       <div>

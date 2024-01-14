@@ -55,7 +55,6 @@ function PartStatus() {
       [partName]: value,
     }));
   };
-  console.log(partStatuses);
   const updateVehiclePartStatus = async (e) => {
     e.preventDefault();
     setMessage("waiting");
@@ -97,7 +96,6 @@ function PartStatus() {
       setMessage("error");
     }
   };
-  console.log(message);
   return (
     <div>
       {fetched ? (

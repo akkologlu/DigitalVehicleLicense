@@ -41,7 +41,6 @@ function AddVehicle() {
       setMessage("error");
     }
   };
-  console.log(message);
   return (
     <div className="formDiv">
       <form onSubmit={handleSubmit} className="form">

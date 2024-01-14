@@ -97,7 +97,7 @@ contract License {
             kilometers: _kilometers,
             currentOwner: msg.sender
         });
-        vehicles[_vehicleId] = newVehicle;
+        
 
         BumperStatus memory defaultBumperStatus = BumperStatus({
             frontBumper: PartStatusType.Original,
@@ -132,6 +132,7 @@ contract License {
         });
 
         partStatuses[_vehicleId] = defaultPartStatus;
+        vehicles[_vehicleId] = newVehicle;
     }
 
 
@@ -208,6 +209,10 @@ contract License {
         status.doors = _doors;
     }
 
+     function getPartStatus(string memory _vehicleId) public view returns (PartStatus memory) {
+        return partStatuses[_vehicleId];
+    }
+
     function getCompleteVehicleDetails(string memory _vehicleId) public view returns (
         Vehicle memory vehicleDetails,
         Accident[] memory vehicleAccidentHistory,
@@ -222,7 +227,5 @@ contract License {
         vehiclePartStatus = partStatuses[_vehicleId];
     }
 
-    function getPartStatus(string memory _vehicleId) public view returns (PartStatus memory) {
-        return partStatuses[_vehicleId];
-    }
+   
 }
