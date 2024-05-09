@@ -151,7 +151,7 @@ function AddAccident() {
                 onClick={handleSubmitIPFS}
                 className="bg-sky-800 text-white p-2 rounded-md w-full hover:bg-sky-900 text-xs"
               >
-                Upload to IPFS
+                {reportId === "" ? "Upload To IPFS" : "Report Uploaded"}
               </button>
               {errorReportId && (
                 <p className="errorText">* Report ID is required</p>

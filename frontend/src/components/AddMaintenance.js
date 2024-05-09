@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { FaArrowCircleRight, FaCheckCircle } from "react-icons/fa";
 import license from "../license";
 import web3 from "../web3";
+import axios from "axios";
+import { FaUpload } from "react-icons/fa";
 
 function AddMaintenance() {
+  const fileInputRef = useRef(null);
   const [message, setMessage] = useState("initial");
   const [vehicleId, setVehicleId] = useState("");
   const [date, setDate] = useState("");
@@ -12,7 +15,8 @@ function AddMaintenance() {
   const [errorVehicleId, setErrorVehicleId] = useState(false);
   const [errorDate, setErrorDate] = useState(false);
   const [errorReportId, setErrorReportId] = useState(false);
-
+  const [dosyaSecMessage, setDosyaSecMessage] = useState("Select File");
+  const [file, setFile] = useState("");
   const validateInput = () => {
     setErrorVehicleId(!vehicleId);
     setErrorDate(!date);
@@ -43,7 +47,28 @@ function AddMaintenance() {
       setMessage("error");
     }
   };
-
+  const handleSubmitIPFS = async (e) => {
+    e.preventDefault();
+    try {
+      const fileData = new FormData();
+      fileData.append("file", file);
+      const responseData = await axios.post(
+        "https://api.pinata.cloud/pinning/pinFileToIPFS",
+        fileData,
+        {
+          headers: {
+            pinata_api_key: process.env.REACT_APP_PINATA_API_KEY,
+            pinata_secret_api_key: process.env.REACT_APP_PINATA_SECRET_KEY,
+          },
+        }
+      );
+      const fileUrl =
+        "https://gateway.pinata.cloud/ipfs/" + responseData.data.IpfsHash;
+      setReportId(fileUrl);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleChangeDate = (e) => {
     setErrorDate(false);
 
@@ -60,6 +85,11 @@ function AddMaintenance() {
     let result = parseInt(`${year}${month}${day}`);
     setDateFormatted(result);
   };
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+    setDosyaSecMessage("File Selected");
+  };
+  console.log(reportId);
 
   return (
     <div className="formDiv">
@@ -93,18 +123,35 @@ function AddMaintenance() {
           </div>
         </div>
         <div className="flex flex-col  space-y-1">
-          <label className="formLabel">Report ID</label>
+          <label className="formLabel">Report</label>
           <div className="formRow">
-            <div className="flex flex-col">
-              <input
-                value={reportId}
-                onChange={(event) => {
-                  setReportId(event.target.value);
-                  setErrorReportId(false);
-                }}
-                type="text"
-                className="formInput"
-              />
+            <div className="flex w-full gap-3">
+              <div className="w-full flex justify-center ">
+                <button
+                  onClick={handleButtonClick}
+                  className="customButton flex items-center justify-center gap-1 border-2 border-none rounded-md p-2 w-full text-white bg-sky-800 hover:bg-sky-900 text-xs"
+                >
+                  <FaUpload className="text-3xl" /> {dosyaSecMessage}
+                </button>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={(event) => {
+                    setFile(event.target.files[0]);
+                    setErrorReportId(false);
+                  }}
+                  className="formInput"
+                  style={{ display: "none" }}
+                />
+              </div>
+
+              <button
+                type="submit"
+                onClick={handleSubmitIPFS}
+                className="bg-sky-800 text-white p-2 rounded-md w-full hover:bg-sky-900 text-xs"
+              >
+                {reportId === "" ? "Upload To IPFS" : "Report Uploaded"}
+              </button>
               {errorReportId && (
                 <p className="errorText">* Report ID is required</p>
               )}
