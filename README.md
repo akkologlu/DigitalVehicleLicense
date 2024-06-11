@@ -9,7 +9,6 @@
     Blockchain Project for Storing Vehicle Data 
     <br />
     <br />
-    <a href="https://digitalvehiclelicense.netlify.app/">View Demo</a>
   </p>
 </div>
 
